@@ -1,0 +1,57 @@
+/*ヘッダ設定１*/
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+}
+
+/*ヘッダ左設定*/
+.header_inner_left {
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: rgb(218, 218, 13);
+    font-size: 30px;
+}
+
+ヘッダ右設定
+.header_inner_right {
+    text-align: right;
+    margin-top: 20px;
+    color: aliceblue;
+}
+
+
+/* ヘッダロゴ設定
+/* .head___logo{
+    width: 200px;
+    height:50px;
+} */ */
+
+/*ヘッダ左設定*/
+/* .header_inner_left {
+    color: #cb0c0c;
+    margin-top:auto;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-between;
+} */
+
+.main_head {
+    text-align: center;
+}
+
+.form_main{
+    text-align: center;
+}
+.form_table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.form_btn{
+    text-align: center;
+}
+
