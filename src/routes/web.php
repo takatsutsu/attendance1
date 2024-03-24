@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AtteController;
 
 
 /*
@@ -14,6 +15,6 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great! */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [AuthController::class, 'index']);
+    Route::get('/', [AtteController::class, 'index']);
+    Route::post('/complete', [AtteController::class, 'store']);
 });
-

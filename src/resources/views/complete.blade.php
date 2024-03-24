@@ -11,10 +11,12 @@
 
 　　<div class="main_head">
     <h2>thanks</h2>
+    <input type="text" name="user_name" value="{{ $atte->user_name }}" readonly />
 </div>
 <form action="/" method="get">
     <div class=" form_main">
-        お問い合わせありがとうございます
+        打刻しました
+
     </div>
     <div class="form_btn">
         <input type="submit" value="HOME" />
