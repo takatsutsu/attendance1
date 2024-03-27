@@ -12,9 +12,9 @@
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
     <input type="hidden" name="user_email" value="{{ $user->email }}" />
     <p><?php
-        $today = date("Y-m-d H:i:s");
+        $start_time = date("Y-m-d H:i:s");
 
-        print_r($today);
+        print_r($start_time);
 
         ?></p>
 </div>
@@ -24,9 +24,11 @@
         <input type="hidden" name="user_id" value="{{ $user->id }}" />
         <input type="hidden" name="user_name" value="{{ $user->name }}" />
         <input type="hidden" name="user_email" value="{{ $user->email }}" />
-        <?php $today = date("Y-m-d H:i:s");
+        <?php $nowtime = date("Y-m-d H:i:s");
+        $today = date("Y-m-d");
         print_r($today); ?>
-        <input type="hidden" name="date-time" value="{{ $today }}" />
+        <input type="hidden" name="work_date" value="{{ $today }}" />
+        <input type="hidden" name="work_start_time" value="{{ $start_time }}" />
         <input type="submit" value="出勤" />
     </div>
 </form>

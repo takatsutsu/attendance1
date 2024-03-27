@@ -17,8 +17,8 @@ class CreateAttendeesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->date('work_date');
-            $table->dateTime('work_start_time');
-            $table->dateTime('work_end_time');
+            $table->dateTime('work_start_time')->nullable(true);
+            $table->dateTime('work_end_time')->nullable(true);
             $table->timestamps();
         });
     }
