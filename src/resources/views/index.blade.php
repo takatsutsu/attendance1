@@ -24,11 +24,8 @@
         <input type="hidden" name="user_id" value="{{ $user->id }}" />
         <input type="hidden" name="user_name" value="{{ $user->name }}" />
         <input type="hidden" name="user_email" value="{{ $user->email }}" />
-        <?php $nowtime = date("Y-m-d H:i:s");
-        $today = date("Y-m-d");
-        print_r($today); ?>
-        <input type="hidden" name="work_date" value="{{ $today }}" />
-        <input type="hidden" name="work_start_time" value="{{ $start_time }}" />
+        <input type="hidden" name="work_date" value="" />
+        <input type="hidden" name="work_start_time" value="" />
         <input type="submit" value="出勤" />
     </div>
 </form>

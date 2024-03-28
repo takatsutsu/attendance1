@@ -19,9 +19,14 @@ class AtteController extends Controller
 
     public function store(Request $request)
     {
-        $atte = $request->only(['user_id','work_date','work_start_time']);
-        Attendee::create($atte);
+        $work_date = date("Y-m-d");
+        $work_start_time = date("Y-m-d H:i:s");
+
+        $atte = $request->only(['user_id', 'work_date', 'work_start_time']);
+        Attendee::create($atte,)->with([
+            'work_start_time' => $work_start_time,
+            'work_date'=>$work_date
+            ]);
         return view('complete');
     }
-
 }
