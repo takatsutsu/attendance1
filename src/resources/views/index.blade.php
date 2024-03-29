@@ -24,8 +24,8 @@
         <input type="hidden" name="user_id" value="{{ $user->id }}" />
         <input type="hidden" name="user_name" value="{{ $user->name }}" />
         <input type="hidden" name="user_email" value="{{ $user->email }}" />
-        <input type="hidden" name="work_date" value="" />
-        <input type="hidden" name="work_start_time" value="" />
+        <input type="hidden" name="work_date" />
+        <input type="hidden" name="work_start_time" />
         <input type="submit" value="出勤" />
     </div>
 </form>
