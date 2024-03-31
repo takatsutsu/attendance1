@@ -16,5 +16,8 @@ use App\Http\Controllers\AtteController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AtteController::class, 'index']);
-    Route::post('/complete', [AtteController::class, 'store']);
+    Route::post('/workstart', [AtteController::class, 'workstart']);
+    Route::post('/workend', [AtteController::class, 'workend']);
+    Route::post('/breakstart', [AtteController::class, 'breakstart']);
+    Route::post('/breakend', [AtteController::class, 'breakend']);
 });
