@@ -36,13 +36,16 @@ class AtteController extends Controller
 
     public function workend(Request $request)
     {
+        $user = Auth::User();
 
         $today = date("Y-m-d");
         $today_time = date("Y-m-d H:i:s");
 
-        $attedata = Attendee::where('user_id', $request->user_id)->where('work_date', $request->work_date)->latest()->first();
-        
-        Attendee::find($request->id)->update($atte);
+        $query = Attendee::where('user_id', $request->user_id)->where('work_date', $today)->latest()->first();
+        $atte = ([
+            'work_end_time' => $today_time
+        ]);
+        Attendee::find($query->id)->update($atte);
 
         return view('complete');
     }
