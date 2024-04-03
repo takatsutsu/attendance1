@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-
-
-
-
 class Attendee extends Model
 {
     use HasFactory;
@@ -20,7 +16,7 @@ class Attendee extends Model
         'work_start_time',
         'work_end_time',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo("App\Models\User");
