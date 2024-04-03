@@ -21,43 +21,36 @@ class AtteController extends Controller
         $today = date("Y-m-d");
         $today_time = date("Y-m-d H:i:s");
 
-        $existsAtte = Attendee::where('user_id', $user->id)->where('work_date', $today)->exists();
-        $dosentAtte = Attendee::where('user_id', $user->id)->where('work_date', $today)->doesntExist();
         $query = Attendee::where('user_id', $user->id)->where('work_date', $today)->latest()->first();
-        if ($dosentAtte){
-            $flag1 = 'A';
+
+        if ($query==null) {
+            $btn1 = 'A';
         }
 
-        if ($existsAtte) {
-            if (!empty($query->work_end_time)) {
-                $flag1 = 'E';
+        if ($query <> null) {
+            if($query->work_end_time <> null){
+            $btn1 = 'E';
             }
-            else
-            {
-                $existsBrea = Breaktime::where('user_id', $user->id)->where('break_date', $today)->exists();
+
+            if ($query->work_end_time == null) {
                 $query2 = Breaktime::where('user_id', $user->id)->where('break_date', $today)->latest()->first();
-                if ($existsBrea)
-                    {
-                        if (!empty($query2->break_end_time))
-                        {
-                        $flag1 = 'C';
-                        }
-                        else
-                        {
-                        $flag1 = 'D';
-                        }
-                    } 
-                    
-                    else
-                    {
-                    $flag1 = 'C';
+                if($query2 == null){
+                    $btn1 = 'B';
+                }
+                if ($query2 <> null) {
+                    if ($query2->break_end_time <> null) {
+                        $btn1 = 'C';
                     }
+                    if ($query2->break_end_time == null) {
+                        $btn1 = 'D';
+                    }
+                }
             }
+        }
 
-
-        return view('index', compact('user','flag1'));
+        return view('index', compact('user','btn1'));
     }
-}
+
 
     public function workstart(Request $request)
     {

@@ -26,10 +26,10 @@
         <input type="hidden" name="work_date" />
         <input type="hidden" name="work_start_time" />
         <?php
-        if ($flag1 == "A") {
+        if ($btn1 == "A") {
             $visu1 = "";
         }
-        if ($flag1 == "B" || $flag1 == 'C'  || $flag1 == 'D' || $flag1 == 'E') {
+        if ($btn1 == "B" || $btn1 == 'C'  || $btn1 == 'D' || $btn1 == 'E') {
             $visu1 = "disabled";
         }
         ?>
@@ -45,10 +45,10 @@
         <input type="hidden" name="work_date" />
         <input type="hidden" name="work_end_time" />
         <?php
-        if ($flag1 == "B" || $flag1 == 'C') {
+        if ($btn1 == "B" || $btn1 == 'C') {
             $visu2 = "";
         }
-        if ($flag1 == "A" || $flag1 == 'D' || $flag1 == 'E') {
+        if ($btn1 == "A" || $btn1 == 'D' || $btn1 == 'E') {
             $visu2 = "disabled";
         }
         ?>
@@ -65,10 +65,10 @@
         <input type="hidden" name="break_date" />
         <input type="hidden" name="break_start_time" />
         <?php
-        if ($flag1 == "B" || $flag1 == 'C') {
+        if ($btn1 == "B" || $btn1 == 'C') {
             $visu3 = "";
         }
-        if ($flag1 == "A" || $flag1 == 'D' || $flag1 == 'E') {
+        if ($btn1 == "A" || $btn1 == 'D' || $btn1 == 'E') {
             $visu3 = "disabled";
         }
         ?>
@@ -85,10 +85,10 @@
         <input type="hidden" name="break_date" />
         <input type="hidden" name="break_start_time" />
         <?php
-        if ($flag1 == "B" || $flag1 == 'C') {
+        if ($btn1 == "D" ) {
             $visu4 = "";
         }
-        if ($flag1 == "A" || $flag1 == 'D'   || $flag1 == 'E') {
+        if ($btn1 == "A"|| $btn1 == 'B'|| $btn1 == 'C'   || $btn1 == 'E') {
             $visu4 = "disabled";
         }
         ?>
