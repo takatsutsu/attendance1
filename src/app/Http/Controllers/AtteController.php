@@ -12,6 +12,8 @@ use App\Models\Breaktime;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers;
+use Carbon\Carbon;
+use CreateAttendeesTable;
 
 class AtteController extends Controller
 {
@@ -23,18 +25,18 @@ class AtteController extends Controller
 
         $query = Attendee::where('user_id', $user->id)->where('work_date', $today)->latest()->first();
 
-        if ($query==null) {
+        if ($query == null) {
             $btn1 = 'A';
         }
 
         if ($query <> null) {
-            if($query->work_end_time <> null){
-            $btn1 = 'E';
+            if ($query->work_end_time <> null) {
+                $btn1 = 'E';
             }
 
             if ($query->work_end_time == null) {
                 $query2 = Breaktime::where('user_id', $user->id)->where('break_date', $today)->latest()->first();
-                if($query2 == null){
+                if ($query2 == null) {
                     $btn1 = 'B';
                 }
                 if ($query2 <> null) {
@@ -48,7 +50,7 @@ class AtteController extends Controller
             }
         }
 
-        return view('index', compact('user','btn1'));
+        return view('index', compact('user', 'btn1'));
     }
 
 
@@ -109,4 +111,31 @@ class AtteController extends Controller
 
         return view('complete');
     }
+
+    public function sumsearch(Request $request)
+    {
+        $today = date("Y-m-d");
+        $user = Auth::User();
+
+
+        $query = Attendee::query();
+
+
+
+        if ($request->has('reset')) {
+            return redirect('/sumsearch')->withInput();
+        }
+
+
+
+
+        if (!empty($request->date_search)) {
+            $query->whereDate('work_date', $request->date_search);
+        }
+
+        $attendees = $query->with('User')->paginate(5);
+
+        return view('sumsearch', compact('attendees', 'user'));
+    }
 }
+
