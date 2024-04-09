@@ -112,9 +112,27 @@ class AtteController extends Controller
         return view('complete');
     }
 
-    public function sumsearch(Request $request)
+    public function sumsearch()
     {
-        $today = date("Y-m-d");
+        $date = date("Y-m-d");
+        $user = Auth::User();
+
+        $query = Attendee::query();
+
+        $query->whereDate('work_date', $date);
+
+        $atte = ([
+            'date_search' => $date
+        ]);
+
+        $attendees = $query->with('User')->paginate(2);
+
+        return view('sumsearch', compact('attendees', 'user'));
+    }
+
+    public function sumresearch(Request $request)
+    {
+        $date = $request->date_search;
         $user = Auth::User();
 
 
@@ -128,14 +146,16 @@ class AtteController extends Controller
 
 
 
-
         if (!empty($request->date_search)) {
             $query->whereDate('work_date', $request->date_search);
         }
 
-        $attendees = $query->with('User')->paginate(5);
+        $atte = ([
+            'work_date' => $request->date_search
+        ]);
 
-        return view('sumsearch', compact('attendees', 'user'));
+        $attendees = $query->with('User')->paginate(2);
+
+        return view('sumsearch', compact('attendees', 'user', 'atte'));
     }
 }
-

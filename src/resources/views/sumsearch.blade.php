@@ -3,6 +3,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sumsearch.css') }}">
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
 @endsection
 
 @section('content')
@@ -27,10 +28,11 @@
 </div>
 <div class="admin__content">
     <div class="header_search">
-        <form class="header_search_form" action="/sumsearch" method="get">
+        <form class="header_search_form" action="/sumresearch" method="post">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search">
+                <input class="date_search" type="date" name="date_search"  />
+                <p>{{$atte->date_search}}</p>
             </div>
 
             <div>
@@ -44,7 +46,7 @@
     </div>
 
 
-    {{ $attendees->links()}}
+    {{$attendees->links()}}
 
     <form class="create-form">
         <div class="admin-table">
