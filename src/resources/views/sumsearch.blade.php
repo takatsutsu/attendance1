@@ -28,11 +28,10 @@
 </div>
 <div class="admin__content">
     <div class="header_search">
-        <form class="header_search_form" action="/sumresearch" method="post">
+        <form class="header_search_form" action="/sumresearch" method="get">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search"  />
-                <p>{{$atte->date_search}}</p>
+                <input class="date_search" type="date" name="date_search" value="{{$atte->date_search}}"/>
             </div>
 
             <div>
@@ -45,8 +44,8 @@
         </form>
     </div>
 
+    {{ $attendees->links('vendor.pagination.custom')}}
 
-    {{$attendees->links()}}
 
     <form class="create-form">
         <div class="admin-table">

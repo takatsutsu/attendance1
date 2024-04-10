@@ -127,7 +127,7 @@ class AtteController extends Controller
 
         $attendees = $query->with('User')->paginate(2);
 
-        return view('sumsearch', compact('attendees', 'user'));
+        return view('sumsearch', compact('attendees', 'user','atte'));
     }
 
     public function sumresearch(Request $request)
