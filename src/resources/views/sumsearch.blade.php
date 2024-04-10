@@ -31,7 +31,7 @@
         <form class="header_search_form" action="/sumresearch" method="get">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search" value="{{$atte->date_search}}"/>
+                <input class="date_search" type="date" name="date_search" value="{{$atte['date_search']}}"/>
             </div>
 
             <div>
