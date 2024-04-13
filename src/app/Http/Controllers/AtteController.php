@@ -125,7 +125,15 @@ class AtteController extends Controller
             'date_search' => $date
         ]);
 
+
         $attendees = $query->with('User')->paginate(2);
+
+        // 開始時間と終了時間を定義
+        $start = Carbon::parse($attendees['work_start_time']);
+        $end = Carbon::parse('work_end_time');
+
+        // 所要時間を計算
+        $duration = $start->diff($end);
 
         return view('sumsearch', compact('attendees', 'user','atte'));
     }
