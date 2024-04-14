@@ -19,7 +19,8 @@ class CreateAttendeesTable extends Migration
             $table->date('work_date');
             $table->dateTime('work_start_time')->nullable(true);
             $table->dateTime('work_end_time')->nullable(true);
-            $table->Time('work_span_time')->nullable(true);
+            $table->time('work_span_time')->nullable(true);
+            $table->integer('work_span_second')->nullable(true);
             $table->timestamps();
         });
     }

@@ -87,7 +87,8 @@ class AtteController extends Controller
 
         $atte = ([
             'work_end_time' => $today_time,
-            'work_span_time' => $hms
+            'work_span_time' => $hms,
+            'work_span_second' => $span_time
         ]);
         Attendee::find($query->id)->update($atte);
 
@@ -98,11 +99,12 @@ class AtteController extends Controller
     {
         $today = date("Y-m-d");
         $today_time = date("Y-m-d H:i:s");
-
+        $query = Attendee::where('user_id', $request->user_id)->where('work_date', $today)->latest()->first();
         $atte = ([
             'user_id' => $request->user_id,
             'break_date' => $today,
-            'break_start_time' => $today_time
+            'break_start_time' => $today_time,
+            'attendee_id' => $query['id']
         ]);
         Breaktime::create($atte,);
         return view('complete');
@@ -126,7 +128,8 @@ class AtteController extends Controller
 
         $atte = ([
             'break_end_time' => $today_time,
-            'break_span_time' => $hms
+            'break_span_time' => $hms,
+            'break_span_second' => $span_time
         ]);
         Breaktime::find($query->id)->update($atte);
 

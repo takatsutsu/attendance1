@@ -16,6 +16,7 @@ class Attendee extends Model
         'work_start_time',
         'work_end_time',
         'work_span_time',
+        'work_span_second',
     ];
 
     public function user()
