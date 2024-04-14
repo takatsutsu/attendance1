@@ -19,6 +19,7 @@ class CreateBreaktimesTable extends Migration
             $table->date('break_date');
             $table->dateTime('break_start_time')->nullable(true);
             $table->dateTime('break_end_time')->nullable(true);
+            $table->Time('break_span_time')->nullable(true);
             $table->timestamps();
         });
     }

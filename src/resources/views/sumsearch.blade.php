@@ -31,13 +31,13 @@
         <form class="header_search_form" action="/sumresearch" method="get">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search" value="{{$atte['date_search']}}"/>
+                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
             </div>
 
             <div>
                 <p>
-                    <button class="search-form__search-submit" type="submit">検索</button>
-                    <button class="search-form__reset-submit" type="submit" name="reset">リセット</button>
+                    <!-- <button class="search-form__search-submit" type="submit">検索</button> -->
+                    <!-- <button class="search-form__reset-submit" type="submit" name="reset">リセット</button> -->
                     <!-- <input class="search-form__reset-btn btn" type="submit" value="リセット" name="reset"> -->
                 </p>
             </div>

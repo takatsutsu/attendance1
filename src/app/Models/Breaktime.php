@@ -15,6 +15,7 @@ class Breaktime extends Model
         'break_date',
         'break_start_time',
         'break_end_time',
+        'break_span_time',
     ];
 
     public function user()

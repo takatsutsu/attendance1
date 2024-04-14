@@ -75,8 +75,19 @@ class AtteController extends Controller
         $today_time = date("Y-m-d H:i:s");
 
         $query = Attendee::where('user_id', $request->user_id)->where('work_date', $today)->latest()->first();
+
+        $start_date = new Carbon($query['work_start_time']);
+        $end_date = new Carbon($today_time);
+        $span_time = $start_date->diffInSeconds($end_date);
+        var_dump($span_time);
+        $hours = floor($span_time / 3600);
+        $minutes = floor(($span_time % 3600) / 60);
+        $seconds = $span_time % 60;
+        $hms = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+
         $atte = ([
-            'work_end_time' => $today_time
+            'work_end_time' => $today_time,
+            'work_span_time' => $hms
         ]);
         Attendee::find($query->id)->update($atte);
 
@@ -104,8 +115,18 @@ class AtteController extends Controller
         $today_time = date("Y-m-d H:i:s");
 
         $query = Breaktime::where('user_id', $request->user_id)->where('break_date', $today)->latest()->first();
+
+        $start_date = new Carbon($query['break_start_time']);
+        $end_date = new Carbon($today_time);
+        $span_time = $start_date->diffInSeconds($end_date);
+        $hours = floor($span_time / 3600);
+        $minutes = floor(($span_time % 3600) / 60);
+        $seconds = $span_time % 60;
+        $hms = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+
         $atte = ([
-            'break_end_time' => $today_time
+            'break_end_time' => $today_time,
+            'break_span_time' => $hms
         ]);
         Breaktime::find($query->id)->update($atte);
 
@@ -128,14 +149,8 @@ class AtteController extends Controller
 
         $attendees = $query->with('User')->paginate(2);
 
-        // 開始時間と終了時間を定義
-        $start = Carbon::parse($attendees['work_start_time']);
-        $end = Carbon::parse('work_end_time');
 
-        // 所要時間を計算
-        $duration = $start->diff($end);
-
-        return view('sumsearch', compact('attendees', 'user','atte'));
+        return view('sumsearch', compact('attendees', 'user', 'atte'));
     }
 
     public function sumresearch(Request $request)
@@ -159,7 +174,7 @@ class AtteController extends Controller
         }
 
         $atte = ([
-            'work_date' => $request->date_search
+            'date_search' => $date
         ]);
 
         $attendees = $query->with('User')->paginate(2);
