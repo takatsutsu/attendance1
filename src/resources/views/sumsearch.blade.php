@@ -75,13 +75,29 @@
 
                         </td>
                         <td>
-                            <input type="text" name="break_time" value="" readonly />
+                            <input type="hidden" name="break_second" value="{{$attendee->break_total}}" readonly />
+
+                            <?php
+                            $hours = floor($attendee->break_total / 3600);
+                            $minutes = floor(($attendee->break_total % 3600) / 60);
+                            $seconds = $attendee->break_total % 60;
+                            $hms = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+                            ?>
+                            <input type="text" name="break_time" value="{{$hms}}" readonly />
 
                         </td>
 
 
                         <td>
-                            <input type="text" name="working_time" value="" readonly />
+                            <input type="hidden" name="work_second" value="{{$attendee->work_span_second}}" readonly />
+                            <?php
+                            $work_total_second = $attendee->work_span_second - $attendee->break_total;
+                            $hours = floor($work_total_second / 3600);
+                            $minutes = floor(($work_total_second % 3600) / 60);
+                            $seconds = $work_total_second % 60;
+                            $hms = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+                            ?>
+                            <input type="text" name="working_time" value="{{$hms}}" readonly />
 
                         </td>
 

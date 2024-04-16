@@ -141,17 +141,27 @@ class AtteController extends Controller
         $date = date("Y-m-d");
         $user = Auth::User();
 
-        $query = Attendee::query();
+        $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
+            ->select(
+                'attendees.id',
+                'attendees.user_id',
+                'attendees.work_date',
+                'attendees.work_start_time',
+                'attendees.work_end_time',
+                'attendees.work_span_time',
+                'attendees.work_span_second',
+                \DB::raw('SUM(breaktimes.break_span_second) as break_total')
+            )
+            ->whereDate('work_date', $date)->groupby('attendees.id');
+        $query2 = Breaktime::query();
 
-        $query->whereDate('work_date', $date);
+
 
         $atte = ([
             'date_search' => $date
         ]);
 
-
-        $attendees = $query->with('User')->paginate(2);
-
+        $attendees =  $query->with('User')->paginate(2);
 
         return view('sumsearch', compact('attendees', 'user', 'atte'));
     }
@@ -160,27 +170,27 @@ class AtteController extends Controller
     {
         $date = $request->date_search;
         $user = Auth::User();
+        $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
+            ->select(
+                'attendees.id',
+                'attendees.user_id',
+                'attendees.work_date',
+                'attendees.work_start_time',
+                'attendees.work_end_time',
+                'attendees.work_span_time',
+                'attendees.work_span_second',
+                \DB::raw('SUM(breaktimes.break_span_second) as break_total')
+            )
+            ->whereDate('work_date', $date)->groupby('attendees.id');
+        $query2 = Breaktime::query();
 
 
-        $query = Attendee::query();
-
-
-
-        if ($request->has('reset')) {
-            return redirect('/sumsearch')->withInput();
-        }
-
-
-
-        if (!empty($request->date_search)) {
-            $query->whereDate('work_date', $request->date_search);
-        }
 
         $atte = ([
             'date_search' => $date
         ]);
 
-        $attendees = $query->with('User')->paginate(2);
+        $attendees =  $query->with('User')->paginate(2);
 
         return view('sumsearch', compact('attendees', 'user', 'atte'));
     }

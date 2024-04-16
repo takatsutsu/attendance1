@@ -23,4 +23,9 @@ class Attendee extends Model
     {
         return $this->belongsTo("App\Models\User");
     }
+
+    public function breaktimes()
+    {
+        return $this->hasMany("App\Models\Breaktime");
+    }
 }
