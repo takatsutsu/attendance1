@@ -140,7 +140,6 @@ class AtteController extends Controller
     {
         $date = date("Y-m-d");
         $user = Auth::User();
-
         $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
             ->select(
                 'attendees.id',
@@ -158,14 +157,13 @@ class AtteController extends Controller
 
 
         $atte = ([
-            'date_search' => $date
+            'date_search' => $date,
         ]);
 
         $attendees =  $query->with('User')->paginate(2);
 
         return view('sumsearch', compact('attendees', 'user', 'atte'));
     }
-
     public function sumresearch(Request $request)
     {
         $date = $request->date_search;
@@ -193,5 +191,28 @@ class AtteController extends Controller
         $attendees =  $query->with('User')->paginate(2);
 
         return view('sumsearch', compact('attendees', 'user', 'atte'));
+    }
+
+    public function nextdate(Request $request)
+    {
+        $date = $request->date_search;
+        $date->modify('+1 day');
+        return var_dump($request->date_search);
+        $user = Auth::User();
+        $atte = ([
+            'date_search' => $date,
+        ]);
+        return view('sumsearch', compact('atte'));
+    }
+    public function lastdate(Request $request)
+    {
+        $date = $request->date_search;
+        $user = Auth::User();
+        $next_date = $date->date('Y-m-d', strtotime('+1 day'));
+        $last_date = $date->date('Y-m-d', strtotime('-1 day'));
+        $atte = ([
+            'date_search' => $last_date,
+        ]);
+        return view('sumsearch', compact('atte'));
     }
 }

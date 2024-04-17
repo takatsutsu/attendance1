@@ -28,10 +28,14 @@
 </div>
 <div class="admin__content">
     <div class="header_search">
-        <form class="header_search_form" action="/sumresearch" method="get">
+        <form class="header_search_form" name="date_form" action="/sumresearch" method="get">
             @csrf
             <div>
                 <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
+                <a href="/lastdate" onclick="document.date_form.submit(); return false;">前日</a>
+
+                <a href="/nextdate" onclick="document.date_form.submit(); return false;">翌日</a>
+
             </div>
 
             <div>
