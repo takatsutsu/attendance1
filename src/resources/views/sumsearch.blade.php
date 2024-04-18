@@ -34,13 +34,22 @@
                 <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
                 <a href="/lastdate" onclick="document.date_form.submit(); return false;">前日</a>
 
-                <a href="/nextdate" onclick="document.date_form.submit(); return false;">翌日</a>
+                <a href="?action=process" onclick="submit(this.form); return false;">処理を実行する</a>
+
+                <?php
+                if (isset($_GET['action']) && $_GET['action'] == 'process') {
+                    $date = $atte['date_search']; // 指定した日付
+                    $next_day = date("Y-m-d", strtotime($date . " +1 day"));
+                    $atte['date_search'] = $next_day;
+                }
+                ?>
+
 
             </div>
 
             <div>
                 <p>
-                    <!-- <button class="search-form__search-submit" type="submit">検索</button> -->
+                    <!-- <button class=" search-form__search-submit" type="submit">検索</button> -->
                     <!-- <button class="search-form__reset-submit" type="submit" name="reset">リセット</button> -->
                     <!-- <input class="search-form__reset-btn btn" type="submit" value="リセット" name="reset"> -->
                 </p>
