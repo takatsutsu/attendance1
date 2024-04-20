@@ -28,33 +28,41 @@
 </div>
 <div class="admin__content">
     <div class="header_search">
-        <form class="header_search_form" name="date_form" action="/sumresearch" method="get">
+        <form class="header_search_form" name="date_form_last" action="/sumresearch" method="post">
+            @csrf
+            <div>
+                <input class="date_search" type="hidden" name="date_search" value="{{$atte['date_search']}}" />
+                <input class="date_search_fg" type="hidden" name="date_flg" value="L" />
+                <button class="date-submit_last" type="submit">＜</button>
+            </div>
+        </form>
+
+        <form class="header_search_form" name="date_form" action="/sumresearch" method="post">
             @csrf
             <div>
                 <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
-                <a href="/lastdate" onclick="document.date_form.submit(); return false;">前日</a>
-
-                <a href="?action=process" onclick="submit(this.form); return false;">処理を実行する</a>
-
-                <?php
-                if (isset($_GET['action']) && $_GET['action'] == 'process') {
-                    $date = $atte['date_search']; // 指定した日付
-                    $next_day = date("Y-m-d", strtotime($date . " +1 day"));
-                    $atte['date_search'] = $next_day;
-                }
-                ?>
-
-
-            </div>
-
-            <div>
-                <p>
-                    <!-- <button class=" search-form__search-submit" type="submit">検索</button> -->
-                    <!-- <button class="search-form__reset-submit" type="submit" name="reset">リセット</button> -->
-                    <!-- <input class="search-form__reset-btn btn" type="submit" value="リセット" name="reset"> -->
-                </p>
+                <input class="date_search_fg" type="hidden" name="date_flg" value="T" />
             </div>
         </form>
+
+
+        <form class="date_form_next" name="date_form_next" action="/sumresearch" method="post">
+            @csrf
+            <div>
+                <input class="date_search" type="hidden" name="date_search" value="{{$atte['date_search']}}" />
+                <input class="date_search_fg" type="hidden" name="date_flg" value="N" />
+                <button class="date-submit_next" type="submit">＞</button>
+            </div>
+        </form>
+
+
+        <div>
+            <p>
+                <!-- <button class=" search-form__search-submit" type="submit">検索</button> -->
+                <!-- <button class="search-form__reset-submit" type="submit" name="reset">リセット</button> -->
+                <!-- <input class="search-form__reset-btn btn" type="submit" value="リセット" name="reset"> -->
+            </p>
+        </div>
     </div>
 
     {{ $attendees->links('vendor.pagination.custom')}}

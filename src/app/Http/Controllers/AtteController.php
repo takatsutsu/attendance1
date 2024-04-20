@@ -154,8 +154,6 @@ class AtteController extends Controller
             ->whereDate('work_date', $date)->groupby('attendees.id');
         $query2 = Breaktime::query();
 
-
-
         $atte = ([
             'date_search' => $date,
         ]);
@@ -164,9 +162,29 @@ class AtteController extends Controller
 
         return view('sumsearch', compact('attendees', 'user', 'atte'));
     }
+
     public function sumresearch(Request $request)
     {
-        $date = $request->date_search;
+        // return var_dump($request->date_flg);
+        if ($request->date_flg == "T") {
+            $date = $request->date_search;;
+        }
+
+        if ($request->date_flg == "L") {
+            $last_date = $request->date_search;
+            $date_timestamp = strtotime($last_date);
+            $last_day_timestamp = $date_timestamp - 86400;
+            $date = date("Y-m-d", $last_day_timestamp);
+        }
+
+        if ($request->date_flg == "N") {
+            $next_date = $request->date_search;
+            $date_timestamp = strtotime($next_date);
+            $next_day_timestamp = $date_timestamp + 86400;
+            $date = date("Y-m-d", $next_day_timestamp);
+        }
+
+
         $user = Auth::User();
         $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
             ->select(
