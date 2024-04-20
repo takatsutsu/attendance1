@@ -40,7 +40,7 @@
         <form class="header_search_form" name="date_form" action="/sumresearch" method="post">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
+                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" readonly/>
                 <input class="date_search_fg" type="hidden" name="date_flg" value="T" />
             </div>
         </form>
