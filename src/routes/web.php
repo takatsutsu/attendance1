@@ -22,4 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/breakend', [AtteController::class, 'breakend']);
     Route::get('/sumsearch', [AtteController::class, 'sumsearch']);
     Route::post('/sumresearch', [AtteController::class, 'sumresearch']);
+    Route::get('/sumresearch', [AtteController::class, 'sumresearch']);
+    Route::get('/lastresearch', [AtteController::class, 'lastresearch']);
 });

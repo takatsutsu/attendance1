@@ -1,8 +1,4 @@
-.random_search{
-    size: 50px;
-}
-
-.pagination {
+pagination {
     display: flex;
     align-items: center;
 }

@@ -140,23 +140,6 @@ class AtteController extends Controller
     {
         $day = date("Y-m-d");
         $user = Auth::User();
-
-        $last_date = $day;
-        $date_timestamp = strtotime($last_date);
-        $last_day_timestamp = $date_timestamp - 86400;
-        $l_day = date("Y-m-d", $last_day_timestamp);
-
-        $next_date = $day;
-        $date_timestamp = strtotime($next_date);
-        $next_day_timestamp = $date_timestamp + 86400;
-        $n_day = date("Y-m-d", $next_day_timestamp);
-
-        $atte = ([
-            'date_search' => $day,
-            'last_search' => $l_day,
-            'next_search' => $n_day
-        ]);
-
         $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
             ->select(
                 'attendees.id',
@@ -171,6 +154,9 @@ class AtteController extends Controller
             ->whereDate('work_date', $day)->groupby('attendees.id');
         $query2 = Breaktime::query();
 
+        $atte = ([
+            'date_search' => $day,
+        ]);
 
         $attendees =  $query->with('User')->paginate(2);
 
@@ -181,23 +167,28 @@ class AtteController extends Controller
     {
         $day = $request->date_search;;
         $user = Auth::User();
+        if ($request->date_flg == "T") {
+            $day = $request->date_search;;
+        }
 
-        $last_date = $request->date_search;
-        $date_timestamp = strtotime($last_date);
-        $last_day_timestamp = $date_timestamp - 86400;
-        $l_day = date("Y-m-d", $last_day_timestamp);
+        if ($request->date_flg == "L") {
+            $last_date = $request->date_search;
+            $date_timestamp = strtotime($last_date);
+            $last_day_timestamp = $date_timestamp - 86400;
+            $day = date("Y-m-d", $last_day_timestamp);
+        }
 
-        $next_date = $request->date_search;
-        $date_timestamp = strtotime($next_date);
-        $next_day_timestamp = $date_timestamp + 86400;
-        $n_day = date("Y-m-d", $next_day_timestamp);
-
+        if ($request->date_flg == "N") {
+            $next_date = $request->date_search;
+            $date_timestamp = strtotime($next_date);
+            $next_day_timestamp = $date_timestamp + 86400;
+            $day = date("Y-m-d", $next_day_timestamp);
+        }
         $atte = ([
-            'date_search' => $day,
-            'last_search' => $l_day,
-            'next_search' => $n_day
+            'date_search' => $day
         ]);
 
+        $user = Auth::User();
         $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
             ->select(
                 'attendees.id',
@@ -209,7 +200,7 @@ class AtteController extends Controller
                 'attendees.work_span_second',
                 \DB::raw('SUM(breaktimes.break_span_second) as break_total')
             )
-            ->whereDate('attendees.work_date', $day)->groupby('attendees.id');
+            ->whereDate('attendees.work_date', $atte['date_search'])->groupby('attendees.id');
         $query2 = Breaktime::query();
 
 

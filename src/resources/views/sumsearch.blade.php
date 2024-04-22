@@ -2,7 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sumsearch.css') }}">
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href=<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
 
 @endsection
 
@@ -31,7 +32,7 @@
         <form class="header_search_form" name="date_form_last" action="/sumresearch" method="post">
             @csrf
             <div>
-                <input class="date_search" type="hidden" name="date_search" value="{{$atte['date_search']}}" />
+                <input class="date_search" type="hidden" name="date_search" value="{{$atte['last_search']}}" />
                 <input class="date_search_fg" type="hidden" name="date_flg" value="L" />
                 <button class="date-submit_last" type="submit">＜</button>
             </div>
@@ -40,8 +41,9 @@
         <form class="header_search_form" name="date_form" action="/sumresearch" method="post">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" readonly/>
+                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
                 <input class="date_search_fg" type="hidden" name="date_flg" value="T" />
+
             </div>
         </form>
 
@@ -49,11 +51,13 @@
         <form class="date_form_next" name="date_form_next" action="/sumresearch" method="post">
             @csrf
             <div>
-                <input class="date_search" type="hidden" name="date_search" value="{{$atte['date_search']}}" />
+                <input class="date_search" type="hidden" name="date_search" value="{{$atte['next_search']}}" />
                 <input class="date_search_fg" type="hidden" name="date_flg" value="N" />
                 <button class="date-submit_next" type="submit">＞</button>
             </div>
         </form>
+
+        {{ $attendees->links('vendor.pagination.custom')}}
 
 
         <div>
@@ -65,7 +69,7 @@
         </div>
     </div>
 
-    {{ $attendees->links('vendor.pagination.custom')}}
+
 
 
     <form class="create-form">
@@ -121,14 +125,13 @@
                             <input type="text" name="working_time" value="{{$hms}}" readonly />
 
                         </td>
-
                     </tr>
                 </form>
                 @endforeach
             </table>
 
-
         </div>
     </form>
+
 </div>
 @endsection
