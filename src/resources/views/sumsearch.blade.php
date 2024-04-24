@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="main_head">
-    <h2>sumsearch</h2>
+    <h2>日付別集計</h2>
 </div>
 <div class="admin__alert">
     @if (session('message'))
@@ -42,7 +42,7 @@
         <form class="header_search_form" name="date_form" action="/sumresearch" method="post">
             @csrf
             <div>
-                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" />
+                <input class="date_search" type="date" name="date_search" onchange="submit(this.form)" value="{{$atte['date_search']}}" readonly />
                 <input class="date_search_fg" type="hidden" name="date_flg" value="T" />
 
             </div>

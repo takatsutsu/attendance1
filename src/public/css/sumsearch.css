@@ -10,3 +10,12 @@
     justify-content: center;
 }
 
+.admin-table__inner{
+    display: flex;
+        justify-content: center;
+}
+
+.main_head{
+    display: flex;
+        justify-content: center;
+}
