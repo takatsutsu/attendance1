@@ -45,3 +45,13 @@
     width: 150px;
     font-size: 25px;
     }
+    
+.work_btn{
+            display: flex;
+            justify-content: center;
+        }
+
+.break_btn{
+            display: flex;
+            justify-content: center;
+        }

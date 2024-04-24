@@ -2,7 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sumsearch.css') }}">
-<link rel="stylesheet" href=<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
 
 
 @endsection
@@ -57,17 +58,8 @@
             </div>
         </form>
 
-        {{ $attendees->links('vendor.pagination.custom')}}
-
-
-        <div>
-            <p>
-                <!-- <button class=" search-form__search-submit" type="submit">検索</button> -->
-                <!-- <button class="search-form__reset-submit" type="submit" name="reset">リセット</button> -->
-                <!-- <input class="search-form__reset-btn btn" type="submit" value="リセット" name="reset"> -->
-            </p>
-        </div>
     </div>
+
 
 
 
@@ -130,6 +122,9 @@
                 @endforeach
             </table>
 
+        </div>
+        <div class="pagination">
+            {{ $attendees->appends(request()->input())->links()}}
         </div>
     </form>
 

@@ -12,14 +12,14 @@
 <form class="form" action="/login" method="post">
     @csrf
     <div class="form_main">
-        <p>メールアドレス <input type="email" name="email" placeholder="test@example.com" value="{{ old('email') }}" /></p>
+        <p>メールアドレス： <input type="email" name="email" size="40" placeholder="test@example.com" value="{{ old('email') }}" /></p>
         <div class="form__error">
             @error('email')
             {{ $message }}
             @enderror
         </div>
 
-        <p>パスワード <input type="password" name="password" placeholder="coachtech1106" value="{{ old('password') }}" /></p>
+        <p>パスワード　　： <input type="password" name="password" size="40" placeholder="coachtech1106" value="{{ old('password') }}" /></p>
         <div class="form__error">
             @error('password')
             {{ $message }}
