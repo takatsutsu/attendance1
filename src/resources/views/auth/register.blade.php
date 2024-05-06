@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/bootstrap_custom2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
 

@@ -172,7 +172,7 @@ class AtteController extends Controller
         $query2 = Breaktime::query();
 
 
-        $attendees =  $query->with('User')->paginate(2);
+        $attendees =  $query->with('User')->paginate(5);
 
         return view('sumsearch', compact('attendees', 'user', 'atte', 'day'));
     }
@@ -213,41 +213,9 @@ class AtteController extends Controller
         $query2 = Breaktime::query();
 
 
-        $attendees =  $query->with('User')->paginate(2);
+        $attendees =  $query->with('User')->paginate(5);
 
         return view('sumsearch', compact('attendees', 'user', 'atte', 'day'));
     }
 
-    public function lastresearch(Request $request)
-    {
-        $last_date = $request->date_search;
-        $date_timestamp = strtotime($last_date);
-        $last_day_timestamp = $date_timestamp - 86400;
-        $day = date("Y-m-d", $last_day_timestamp);
-
-        $user = Auth::User();
-
-        $user = Auth::User();
-        $query = Attendee::query()->leftJoin('breaktimes', 'attendees.id', '=', 'breaktimes.attendee_id')
-            ->select(
-                'attendees.id',
-                'attendees.user_id',
-                'attendees.work_date',
-                'attendees.work_start_time',
-                'attendees.work_end_time',
-                'attendees.work_span_time',
-                'attendees.work_span_second',
-                \DB::raw('SUM(breaktimes.break_span_second) as break_total')
-            )
-            ->whereDate('work_date', $day)->groupby('attendees.id');
-        $query2 = Breaktime::query();
-
-        $atte = ([
-            'date_search' => $day
-        ]);
-
-        $attendees =  $query->with('User')->paginate(2);
-
-        return view('sumsearch', compact('attendees', 'user', 'atte', 'day'));
-    }
 }
