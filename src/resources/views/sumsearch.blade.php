@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/bootstrap_custom2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sumsearch.css') }}">
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
 
 
 
@@ -10,7 +11,7 @@
 
 @section('content')
 <div class="main_head">
-    <h2>日付別集計</h2>
+    <h2 class="small-tittle">日付別集計画面</h2>
 </div>
 <div class="admin__alert">
     @if (session('message'))

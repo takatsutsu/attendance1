@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/bootstrap_custom2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
 @section('content')
 
 <div class="main_head">
-    <h2>login</h2>
+    <h2 class="small-tittle">ログイン画面</h2>
 </div>
 <form class="form" action="/login" method="post">
     @csrf

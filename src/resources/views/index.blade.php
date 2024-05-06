@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/bootstrap_custom2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
 @section('content')
 <div class="main_head">
-    <h2>打刻画面</h2>
-    <h2>{{ $user->name }}さんの打刻ページです</h2>
+    <h2 class="small-tittle">打刻画面</h2>
+    <h2 class="small-message">{{ $user->name }}さん　お疲れ様です！！</h2>
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
     <input type="hidden" name="user_email" value="{{ $user->email }}" />
     <p><?php
