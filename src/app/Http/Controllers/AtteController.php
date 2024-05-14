@@ -79,7 +79,6 @@ class AtteController extends Controller
         $start_date = new Carbon($query['work_start_time']);
         $end_date = new Carbon($today_time);
         $span_time = $start_date->diffInSeconds($end_date);
-        var_dump($span_time);
         $hours = floor($span_time / 3600);
         $minutes = floor(($span_time % 3600) / 60);
         $seconds = $span_time % 60;
