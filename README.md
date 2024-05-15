@@ -103,11 +103,11 @@ $ `docker-compose exec php bash`
 
 $ `php artisan migrate`
 
-⑦シーディングの実行(ユーザマスタ)  
-$ `docker-compose exec php bash`  
+⑦ シーディングの実行(ユーザマスタのみ)  
+$ `docker-compose exec php bash`
 
-$ `php artisan db:seed`  
+$ `php artisan db:seed`
 
-ログイン初期パスワードは全てpassword
+ログイン初期パスワードは全て password
 
 ## 他に記載することがあれば記載する
