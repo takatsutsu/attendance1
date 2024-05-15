@@ -14,13 +14,13 @@
 
 - 打刻画面 http://localhost/
 - 日付別集計画面 http://localhost/sumsearch
-- 社員登録画面 http://localhost/register
+- アカウント（社員）登録画面 http://localhost/register
 
 ## 他のレポジトリー
 
 ## 機能一覧
 
-- 会員登録
+- アカウント（社員）登録
 - ログイン
 - ログアウト
 - 勤務開始
