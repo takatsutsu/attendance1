@@ -14,7 +14,7 @@
 
 - 打刻画面 http://localhost/
 - 日付別集計画面 http://localhost/sumsearch
-- 会員登録画面 http://localhost/register
+- 社員登録画面 http://localhost/register
 
 ## 他のレポジトリー
 
