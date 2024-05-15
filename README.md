@@ -105,7 +105,7 @@ $ `docker-compose exec php bash`
 
 $ `php artisan migrate`
 
-⑦ シーディングの実行(ユーザマスタのみ)  
+⑦ シーディングの実行（アカウント(社員)マスタのみ）  
 $ `docker-compose exec php bash`
 
 $ `php artisan db:seed`
