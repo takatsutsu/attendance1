@@ -111,5 +111,3 @@ $ `docker-compose exec php bash`
 $ `php artisan db:seed`
 
 ログイン初期パスワードは全て password
-
-## 他に記載することがあれば記載する
