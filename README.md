@@ -51,15 +51,15 @@
 
 **Docker ビルド**
 
-$ `cd coachteck/laravel`
+$ `cd coachtech/laravel`
 
 $ `git clone git@github.com:coachtech-material/`
 
 $ `laravel-docker-template.git`
 
-$ `mv laravel-docker-template`
+$ `mv laravel-docker-template [attendannce1]`  
+※[attendannce1]は任意のフォルダ名
 
-[attendannce1] [attendannce1]は任意のフォルダ名
 DockerDesktop アプリを立ち上げる
 
 $ `docker-compose up -d --build`
