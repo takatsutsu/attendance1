@@ -14,7 +14,7 @@ use App\Http\Controllers\AtteController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great! */
 
-Route::middleware('auth')->group(function () {
+Route::middleware('verified')->group(function () {
     Route::get('/', [AtteController::class, 'index']);
     Route::post('/workstart', [AtteController::class, 'workstart']);
     Route::post('/workend', [AtteController::class, 'workend']);
@@ -24,3 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/sumresearch', [AtteController::class, 'sumresearch']);
     Route::get('/sumresearch', [AtteController::class, 'sumresearch']);
 });
+    Route::get('/thanks', [AuthController::class, 'thanks']);

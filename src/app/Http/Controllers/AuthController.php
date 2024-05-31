@@ -10,4 +10,9 @@ class AuthController extends Controller
     {
         return view('index');
     }
+
+    public function thanks()
+    {
+        return view('auth.userthanks');
+    }
 }
