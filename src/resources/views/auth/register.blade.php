@@ -9,7 +9,7 @@
 <div class="main_head">
     <h2 class="small-tittle">アカウント登録画面</h2>
 </div>
-<form class="form" action="/thanks" method="get">
+<form class="form" action="/register" method="post">
     @csrf
     <div class="form_main">
         <p>お名前 ：　　　　　　　<input type="text" name="name" size="40" placeholder="" value="{{ old('name') }}" /></p>

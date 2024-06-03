@@ -24,4 +24,6 @@ Route::middleware('verified')->group(function () {
     Route::post('/sumresearch', [AtteController::class, 'sumresearch']);
     Route::get('/sumresearch', [AtteController::class, 'sumresearch']);
 });
-    Route::get('/thanks', [AuthController::class, 'thanks']);
+Route::get('/email/verify', function () {
+    return view('auth.user_thanks');
+})->middleware('auth')->name('verification.notice');
