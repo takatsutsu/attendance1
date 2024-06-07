@@ -19,7 +19,7 @@
         @endsection
 
         @if (session('message'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert-success" role="alert">
             {{ session('message') }}
         </div>
         @endif
