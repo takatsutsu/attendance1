@@ -1,0 +1,31 @@
+span {
+    color: blue;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form_main {
+    font-size: 20px;
+}
+
+.mainform_message1 {
+    color: red;
+}
+.mainform_message2 {
+    color: red;
+}
+
+.mainform_message3 {
+    color: red;
+}
+
+.form_btn {
+    text-align: center;
+}
+
+.form_main {
+    text-align: center;
+}
